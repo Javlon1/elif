@@ -2,7 +2,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from create_bot import *
 from aiogram import types
-from Keyboards.kb_client import inline_kb, year_kb, address_kb,address_kb
+from Keyboards.kb_client import inline_kb, year_kb, address_kb, address_kb
 from data__base import sqlite_db
 from aiogram.dispatcher.filters import Text
 
@@ -85,7 +85,7 @@ async def cancel_handler(message: types.Message, state: FSMContext):
 async def load_name(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['fullname'] = message.text
-    await message.answer('имя принято ✅',reply_markup=year_kb)
+    await message.answer('имя принято ✅', reply_markup=year_kb)
     await FSMAdmin.next()
     await message.answer('когда ты родился? \nнапример: 1999')
 
@@ -95,11 +95,17 @@ async def load_dataofbir(message: types.Message, state: FSMContext):
     mes = (message.text)
     if (mes).isdigit():
         if len(mes) == 4:
-            async with state.proxy() as data:
-                data['dataofbir'] = message.text
-            await message.answer('год рождения принято ✅')
-            await FSMAdmin.next()
-            await message.answer('отправь фото')
+            if mes > '1940':
+                if mes < '2020':
+                    async with state.proxy() as data:
+                        data['dataofbir'] = message.text
+                    await message.answer('год рождения принято ✅')
+                    await FSMAdmin.next()
+                    await message.answer('отправь фото')
+                else:
+                    await message.answer('ваш год рождения не сответствует нам нужны более старши работноки')
+            else:
+                await message.answer('ваш год рождения не сответствует нам нужны молодые работноки')
         else:
             await message.answer('не существует такого года рождения')
     else:
@@ -118,14 +124,14 @@ async def load_photo(message: types.Message, state: FSMContext):
 async def load_num1(message: types.Message, state: FSMContext):
     mes = (message.text)
     if (mes).isdigit():
-        if len(mes) == 9:
+        if len(mes) == 9 or len(mes) == 12:
             async with state.proxy() as data:
                 data['num1'] = message.text
             await message.answer('номер принято ✅')
             await FSMAdmin.next()
             await message.answer('отправь ещё раз номер телефона')
         else:
-            await message.answer('пиши номер в таком ввиде: 905251243')
+            await message.answer('пиши номер в таком ввиде: 905251243 или 998902521243')
     else:
         await message.answer('не пиши буквы')
 
@@ -133,14 +139,14 @@ async def load_num1(message: types.Message, state: FSMContext):
 async def load_num2(message: types.Message, state: FSMContext):
     mes = (message.text)
     if (mes).isdigit():
-        if len(mes) == 9:
+        if len(mes) == 9 or len(mes) == 12:
             async with state.proxy() as data:
                 data['num2'] = message.text
             await message.answer('второй номер принято ✅')
             await FSMAdmin.next()
-            await message.answer('где ты живешь',reply_markup=address_kb)
+            await message.answer('где ты живешь', reply_markup=address_kb)
         else:
-            await message.answer('пиши номер в таком ввиде: 905251243')
+            await message.answer('пиши номер в таком ввиде: 905251243 или 998902521243')
     else:
         await message.answer('не пиши буквы')
 
@@ -158,7 +164,7 @@ async def load_job(message: types.Message, state: FSMContext):
         data['job'] = message.text
     await message.answer('принято ✅')
     await FSMAdmin.next()
-    await message.answer('сколько хочешь получить в месяц\nнапример: 100-$')
+    await message.answer('сколько хочешь получить в месяц\nнапример: 200$')
 
 
 # ловим последний ответ и используем полученные данные
@@ -177,11 +183,13 @@ def register_handlers_client(dp: Dispatcher):
     # dp.register_message_handler(command_help, commands=['help'])
     # dp.register_message_handler(command_address, commands=['address'])
     dp.register_message_handler(cancel_handler, state="*", commands="отмена")
-    dp.register_message_handler(cancel_handler, Text(equals="отмена", ignore_case=True), state="*")
+    dp.register_message_handler(cancel_handler, Text(
+        equals="отмена", ignore_case=True), state="*")
     dp.register_message_handler(load_bolim, state=FSMAdmin.bolim)
     dp.register_message_handler(load_name, state=FSMAdmin.fullname)
     dp.register_message_handler(load_dataofbir, state=FSMAdmin.dataofbir)
-    dp.register_message_handler(load_photo, content_types=['photo'], state=FSMAdmin.photo)
+    dp.register_message_handler(load_photo, content_types=[
+                                'photo'], state=FSMAdmin.photo)
     dp.register_message_handler(load_num1, state=FSMAdmin.num1)
     dp.register_message_handler(load_num2, state=FSMAdmin.num2)
     dp.register_message_handler(load_address, state=FSMAdmin.address)
