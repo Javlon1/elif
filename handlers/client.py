@@ -7,7 +7,7 @@ from data__base import sqlite_db
 from aiogram.dispatcher.filters import Text
 
 
-COMMAND_START = "<em>Добро пожаловать \n\nкем ты хочешь работаь у нас </em>"
+COMMAND_START = "<em> Добро пожаловать \n\nкем ты хочешь работаь у нас </em>"
 
 
 COMMAND_HELP = """
