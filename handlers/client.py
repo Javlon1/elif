@@ -84,10 +84,14 @@ async def cancel_handler(message: types.Message, state: FSMContext):
 # @dp.message_handler(state=FSMAdmin.name)
 async def load_name(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
-        data['fullname'] = message.text
-    await message.answer('имя принято ✅', reply_markup=year_kb)
-    await FSMAdmin.next()
-    await message.answer('когда ты родился? \nнапример: 1999')
+        matn = message.text
+        if matn.split()[0] != matn:
+            data['fullname'] = message.text
+            await message.answer('имя принято ✅', reply_markup=year_kb)
+            await FSMAdmin.next()
+            await message.answer('когда ты родился? \nнапример: 1999')
+        else:
+            await message.answer('напиши имю так \nнапример: палончиев писмоданчи')
 
 
 # @dp.message_handler(state=FSMAdmin.name)
