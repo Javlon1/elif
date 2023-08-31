@@ -6,6 +6,8 @@ from Keyboards.kb_client import inline_kb, year_kb, address_kb, address_kb
 from data__base import sqlite_db
 from aiogram.dispatcher.filters import Text
 
+from aiogram.types import ReplyKeyboardRemove
+
 
 COMMAND_START = "<em> Добро пожаловать \n\nкем ты хочешь работаь у нас </em>"
 
@@ -71,14 +73,14 @@ async def load_bolim(message: types.Message, state: FSMContext):
 
 
 # выход из состоянии
-# @dp.message_handler(state="*",commands="отмена")
-# @dp.message_handler(Text(equals="отмена", ignore_case=True), state="*")
+# @dp.message_handler(state="*",commands="cancel")
+# @dp.message_handler(Text(equals="cancel", ignore_case=True), state="*")
 async def cancel_handler(message: types.Message, state: FSMContext):
     current_state = await state.get_state()
     if current_state is None:
         return
     await state.finish()
-    await message.reply("ok")
+    await message.reply("регистрация отменено")
 
 
 # @dp.message_handler(state=FSMAdmin.name)
@@ -186,9 +188,9 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(command_start, commands=['start'], state=None)
     # dp.register_message_handler(command_help, commands=['help'])
     # dp.register_message_handler(command_address, commands=['address'])
-    dp.register_message_handler(cancel_handler, state="*", commands="отмена")
+    dp.register_message_handler(cancel_handler, state="*", commands="cancel")
     dp.register_message_handler(cancel_handler, Text(
-        equals="отмена", ignore_case=True), state="*")
+        equals="cancel", ignore_case=True), state="*")
     dp.register_message_handler(load_bolim, state=FSMAdmin.bolim)
     dp.register_message_handler(load_name, state=FSMAdmin.fullname)
     dp.register_message_handler(load_dataofbir, state=FSMAdmin.dataofbir)
