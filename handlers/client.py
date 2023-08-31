@@ -2,7 +2,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from create_bot import *
 from aiogram import types
-from Keyboards.kb_client import inline_kb, year_kb, address_kb, address_kb
+from Keyboards.kb_client import inline_kb, year_kb, address_kb, address_kb, start_kb
 from data__base import sqlite_db
 from aiogram.dispatcher.filters import Text
 
@@ -80,7 +80,7 @@ async def cancel_handler(message: types.Message, state: FSMContext):
     if current_state is None:
         return
     await state.finish()
-    await message.reply("регистрация отменено")
+    await message.reply("регистрация отменено\n\nесли хочешь начать регистрацию то нажми на кнапку старт", reply_markup=start_kb)
 
 
 # @dp.message_handler(state=FSMAdmin.name)

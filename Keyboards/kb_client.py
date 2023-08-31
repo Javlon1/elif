@@ -1,6 +1,19 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
 
 # row, add, insert
+
+
+
+start_kb = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton('/start'),
+        ],
+    ],
+    resize_keyboard=True, one_time_keyboard=True
+)
+
+
 inline_kb = ReplyKeyboardMarkup(
     keyboard=[
         [
