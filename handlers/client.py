@@ -5,7 +5,6 @@ from aiogram import types
 from Keyboards.kb_client import inline_kb, year_kb, address_kb, address_kb, start_kb
 from data__base import sqlite_db
 from aiogram.dispatcher.filters import Text
-
 from aiogram.types import ReplyKeyboardRemove
 
 
@@ -118,13 +117,19 @@ async def load_dataofbir(message: types.Message, state: FSMContext):
         await message.answer('не пиши буквы')
 
 
-# @dp.message_handler(content_types=['photo'],state=FSMAdmin.photo)
+# @dp.message_handler(content_types=['any'], state=FSMAdmin.photo)
 async def load_photo(message: types.Message, state: FSMContext):
-    async with state.proxy() as data:
-        data['photo'] = message.photo[0].file_id
-    await message.answer('фото принято ✅')
-    await FSMAdmin.next()
-    await message.answer('отправь номер телефона')
+
+    mes = (message.text)
+
+    if mes != str(mes):
+        async with state.proxy() as data:
+            data['photo'] = message.photo[0].file_id
+        await message.answer('фото принято ✅')
+        await FSMAdmin.next()
+        await message.answer('отправь номер телефона')
+    else:
+        await message.answer('<b>Matn emas, rasmingizni yuboring !</b>', parse_mode="HTML")
 
 
 async def load_num1(message: types.Message, state: FSMContext):
@@ -195,7 +200,7 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(load_name, state=FSMAdmin.fullname)
     dp.register_message_handler(load_dataofbir, state=FSMAdmin.dataofbir)
     dp.register_message_handler(load_photo, content_types=[
-                                'photo'], state=FSMAdmin.photo)
+                                'any'], state=FSMAdmin.photo)
     dp.register_message_handler(load_num1, state=FSMAdmin.num1)
     dp.register_message_handler(load_num2, state=FSMAdmin.num2)
     dp.register_message_handler(load_address, state=FSMAdmin.address)
