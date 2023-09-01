@@ -4,7 +4,7 @@ from data__base import sqlite_db
 from Keyboards.kb_admin import kb_admin
 
 
-KEY = "ADMIN"
+KEY = "ADMIN_1756373"
 
 
 #получаем ID текущего модератора
@@ -23,4 +23,4 @@ async def menu(message: types.Message):
 # рег хендлеров
 def register_handlers_admin(dp: Dispatcher):
     dp.register_message_handler(get_admin, commands=[KEY])       
-    dp.register_message_handler(menu, commands=['menu'])        
+    dp.register_message_handler(menu, commands=['menu_176235000'])        
