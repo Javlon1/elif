@@ -2,8 +2,6 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMar
 
 # row, add, insert
 
-
-
 start_kb = ReplyKeyboardMarkup(
     keyboard=[
         [
@@ -13,17 +11,29 @@ start_kb = ReplyKeyboardMarkup(
     resize_keyboard=True, one_time_keyboard=True
 )
 
+info_kb = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton('/start'),
+            KeyboardButton('/help'),
+        ],
+        [
+            KeyboardButton("/about")
+        ],
+    ],
+    resize_keyboard=True, one_time_keyboard=True
+)
 
 inline_kb = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text='оператор(жен)')
+            KeyboardButton(text='Operator(Ayol)')
         ],
         [
-            KeyboardButton(text='стирка(муж)')
+            KeyboardButton(text='Yuvish(Erkak)')
         ],
         [
-            KeyboardButton(text='доставщик')
+            KeyboardButton(text='Shafyorlik')
         ],
     ],
     resize_keyboard=True, one_time_keyboard=True
@@ -63,36 +73,59 @@ user_info_kb = ReplyKeyboardMarkup(
 address_kb = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text='Андижон Шахар'),
-            KeyboardButton(text='Андижон Туман'),
+            KeyboardButton(text='Andijon Shaxri'),
+            KeyboardButton(text='Andijon Tumani'),
         ],
         [
-            KeyboardButton(text='Хонабод'),
-            KeyboardButton(text='Асака'),
+            KeyboardButton(text='Xonabod'),
+            KeyboardButton(text='Asaka'),
         ],
         [
-            KeyboardButton(text='Баликчи'),
-            KeyboardButton(text='Бостон'),
+            KeyboardButton(text='Baliqchi'),
+            KeyboardButton(text="Bo'ston"),
         ],
         [
-            KeyboardButton(text='Булокбоши'),
-            KeyboardButton(text='Жалакудук'),
+            KeyboardButton(text='Buloqboshi'),
+            KeyboardButton(text='Jalaquduq'),
         ],
         [
-            KeyboardButton(text='Избоскан'),
-            KeyboardButton(text='Улугнор'),
+            KeyboardButton(text='Izboskan'),
+            KeyboardButton(text="Ulug'nor"),
         ],
         [
-            KeyboardButton(text='Олитнкол'),
-            KeyboardButton(text='Мархамат'),
+            KeyboardButton(text='Oltinkol'),
+            KeyboardButton(text='Marhamat'),
         ],
         [
-            KeyboardButton(text='Пахтаобод'),
-            KeyboardButton(text='Шахрихон'),
+            KeyboardButton(text='Paxtaobod'),
+            KeyboardButton(text='Shaxrixon'),
         ],
         [
-            KeyboardButton(text='Хожабод'),
-            KeyboardButton(text='Коргонтепа'),
+            KeyboardButton(text="Xo'jaobod"),
+            KeyboardButton(text="Qo'rg'ontepa"),
+        ],
+    ],
+    resize_keyboard=True, one_time_keyboard=True
+)
+
+wedding_kb = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(text="Turmush qurganman"),
+            KeyboardButton(text="Turmush qurmaganman"),
+        ],
+        [
+            KeyboardButton(text="Ajrashganman")
+        ],
+    ],
+    resize_keyboard=True, one_time_keyboard=True
+)
+
+court_kb =  ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(text="xa"),
+            KeyboardButton(text="yoq"),
         ],
     ],
     resize_keyboard=True, one_time_keyboard=True

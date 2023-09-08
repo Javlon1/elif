@@ -3,7 +3,7 @@ from aiogram import types
 from data__base import sqlite_db
 from Keyboards.kb_admin import kb_admin
 
-
+    
 KEY = "ADMIN_1756373"
 
 
@@ -23,4 +23,4 @@ async def menu(message: types.Message):
 # рег хендлеров
 def register_handlers_admin(dp: Dispatcher):
     dp.register_message_handler(get_admin, commands=[KEY])       
-    dp.register_message_handler(menu, commands=['menu_176235000'])        
+    dp.register_message_handler(menu, commands=['menu_176235000'])
