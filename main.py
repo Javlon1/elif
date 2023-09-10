@@ -1,4 +1,4 @@
-from handlers import admin, client, other
+from handlers import admin, client
 from create_bot import *
 from data__base import sqlite_db
 
@@ -10,7 +10,6 @@ async def on_startup(_):
 
 admin.register_handlers_admin(dp)
 client.register_handlers_client(dp)
-# other.register_handlers_other(dp)
 
 
 if __name__ == '__main__':
