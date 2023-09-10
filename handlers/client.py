@@ -5,7 +5,6 @@ from aiogram import types
 from Keyboards.kb_client import inline_kb, year_kb, address_kb, address_kb, court_kb, info_kb, wedding_kb
 from data__base import sqlite_db
 from aiogram.dispatcher.filters import Text
-from aiogram.types import ReplyKeyboardRemove
 
 
 COMMAND_START = "<em> Ассалому алейкум ELIF Gilam va Mebel Yuvish ботига хуш келибсиз \n\nКим болиб ишламокчисиз </em>"
