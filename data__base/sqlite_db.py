@@ -19,6 +19,7 @@ async def sql_add_command(state):
 
 
 async def sql_read(message):
+    j = 0
     for i in cur.execute('SELECT * FROM menu').fetchall():
-        await bot.send_photo(message.from_user.id, i[3],f"\n\n<em><b> Ism, Familiya: </b> {i[1]}\n\n <b>Tug'ilgan yili: </b> {i[2]}\n\n <b>Telefon raqami: </b> {i[4]}\n\n <b>Qo'shimcha telefon raqami: </b> {i[5]}\n\n <b>Bo'lim: </b> {i[0]}\n\n <b>Manzili: </b> {i[6]}, {i[7]}\n\n <b>Ijtimoiy holati: </b>{i[8]} \n\n <b>Sudlanganmi: {i[9]}</b> \n\n<b>kim bo'lib ishlagan: </b> {i[10]}\n\n <b>Qancha maoshga ishlamoqchi: </b> {i[11]}\n</em>", parse_mode="HTML")
-     
+        j+=1
+        await bot.send_photo(message.from_user.id, i[3],f"\n\n<b>id: </b>{j}\n\n<em><b> Ism, Familiya: </b> {i[1]}\n\n <b>Tug'ilgan yili: </b> {i[2]}\n\n <b>Telefon raqami: </b> {i[4]}\n\n <b>Qo'shimcha telefon raqami: </b> {i[5]}\n\n <b>Bo'lim: </b> {i[0]}\n\n <b>Manzili: </b> {i[6]}, {i[7]}\n\n <b>Ijtimoiy holati: </b>{i[8]} \n\n <b>Sudlanganmi: {i[9]}</b> \n\n<b>kim bo'lib ishlagan: </b> {i[10]}\n\n <b>Qancha maoshga ishlamoqchi: </b> {i[11]}\n</em>", parse_mode="HTML")

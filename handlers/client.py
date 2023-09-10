@@ -19,7 +19,7 @@ COMMAND_HELP = """
 """
 
 ABOUT = """
-ELIF Gilam va Mebel Yuvish ... хакида ... \nRasmiy kanalimiz - https://t.me/ELIF_GilamYuvish
+ELIF Gilam va Mebel Yuvish\n\n... хакида ... \n\nRasmiy kanalimiz - https://t.me/ELIF_GilamYuvish
 """
 
 
